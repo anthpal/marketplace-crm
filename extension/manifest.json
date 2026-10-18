@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Marketplace CRM",
+  "version": "0.0.1",
+  "description": "Clasificación local de fiabilidad de vendedor en Facebook Marketplace",
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/marketplace/**"],
+      "js": ["facebook-data.js", "local-scoring.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_title": "Analizar anuncio"
+  }
+}
