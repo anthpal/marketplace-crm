@@ -9,6 +9,12 @@
       "js": ["facebook-data.js", "local-scoring.js", "content.js"],
       "run_at": "document_idle",
       "all_frames": false
+    },
+    {
+      "matches": ["https://www.facebook.com/messages/t/**"],
+      "js": ["facebook-data.js", "local-scoring.js", "content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
     }
   ],
   "action": {
