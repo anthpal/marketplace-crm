@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Marketplace CRM</title>
+    <style>
+      :root {
+        --bg: #14161a;
+        --panel: #1d2027;
+        --line: #2b2f38;
+        --text: #e8eaed;
+        --muted: #9aa2ad;
+        --ok: #2f9e44;
+        --err: #c92a2a;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        width: 380px;
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 13px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      header {
+        padding: 12px 14px 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      .title {
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .ctx {
+        margin-top: 2px;
+        font-weight: 600;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .ctx small {
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .badge {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        background: #33383f;
+        color: #cfd5dc;
+      }
+      .badge.green {
+        background: rgba(47, 158, 68, 0.18);
+        color: #69db7c;
+      }
+      .badge.yellow {
+        background: rgba(201, 138, 18, 0.18);
+        color: #ffd43b;
+      }
+      .badge.red {
+        background: rgba(201, 42, 42, 0.18);
+        color: #ff8787;
+      }
+      .summary {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .stats {
+        display: flex;
+        gap: 12px;
+        padding: 8px 14px;
+        border-bottom: 1px solid var(--line);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .stats b.ok {
+        color: #69db7c;
+      }
+      .stats b.err {
+        color: #ff8787;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 6px 0;
+        max-height: 420px;
+        overflow-y: auto;
+      }
+      li.row {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 5px 14px;
+        border-left: 3px solid transparent;
+      }
+      li.row.ok {
+        border-left-color: var(--ok);
+      }
+      li.row.err {
+        border-left-color: var(--err);
+        background: rgba(201, 42, 42, 0.07);
+      }
+      .dot {
+        flex: 0 0 auto;
+        width: 8px;
+        height: 8px;
+        margin-top: 5px;
+        border-radius: 50%;
+        background: var(--err);
+      }
+      li.row.ok .dot {
+        background: var(--ok);
+      }
+      .body {
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+      .label {
+        color: var(--muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .value {
+        display: block;
+        color: var(--text);
+        word-break: break-word;
+      }
+      li.row.err .value {
+        color: #ff8787;
+        font-style: italic;
+      }
+      .src {
+        flex: 0 0 auto;
+        margin-top: 1px;
+        font-size: 10px;
+        color: #6b7480;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 0 4px;
+        align-self: center;
+      }
+      .empty {
+        padding: 18px 14px;
+        color: var(--muted);
+        text-align: center;
+      }
+      footer {
+        display: flex;
+        gap: 8px;
+        padding: 10px 14px;
+        border-top: 1px solid var(--line);
+        background: var(--panel);
+      }
+      button {
+        flex: 1 1 auto;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: #262a32;
+        color: var(--text);
+        font: inherit;
+        padding: 6px 10px;
+        border-radius: 6px;
+      }
+      button:hover {
+        background: #2f343d;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="title">Marketplace CRM</div>
+      <div class="ctx" id="ctx">Leyendo…</div>
+      <span class="badge" id="badge" hidden></span>
+      <div class="summary" id="summary"></div>
+    </header>
+    <div class="stats" id="stats"></div>
+    <ul id="rows"></ul>
+    <div class="empty" id="empty" hidden></div>
+    <footer>
+      <button id="refresh" type="button">Re-analizar</button>
+      <button id="copy" type="button">Copiar JSON</button>
+    </footer>
+    <script src="popup.js"></script>
+  </body>
+</html>
