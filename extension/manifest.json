@@ -1,18 +1,24 @@
 {
   "manifest_version": 3,
   "name": "Marketplace CRM",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Clasificación local de fiabilidad de vendedor en Facebook Marketplace",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/marketplace/**"],
+      "matches": [
+        "https://www.facebook.com/marketplace/**",
+        "https://web.facebook.com/marketplace/**"
+      ],
       "js": ["facebook-data.js", "local-scoring.js", "content.js"],
       "run_at": "document_idle",
       "all_frames": false
     },
     {
-      "matches": ["https://www.facebook.com/messages/t/**"],
+      "matches": [
+        "https://www.facebook.com/messages/t/**",
+        "https://web.facebook.com/messages/t/**"
+      ],
       "js": ["facebook-data.js", "local-scoring.js", "content.js"],
       "run_at": "document_idle",
       "all_frames": false

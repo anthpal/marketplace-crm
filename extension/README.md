@@ -18,6 +18,10 @@ Facebook Marketplace y muestra un panel local: **cero red, cero backend**.
 - Ejecuta `SpottableLocal.classify()` localmente y pinta el semáforo en la página.
 - **Al pulsar el icono de la extensión** abre un popup con el informe campo a campo.
 
+Funciona en `www.facebook.com` y en `web.facebook.com` (mismo Marketplace). El
+endpoint GraphQL se resuelve contra el origen de la pestaña (`graphqlUrl()`), para
+no pedir `www` desde `web`, que sería otro origen y CORS lo bloquearía.
+
 ## El popup (verde / rojo)
 
 `popup.html` + `popup.js` no leen Facebook: le piden el informe al content script

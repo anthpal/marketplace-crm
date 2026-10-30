@@ -119,9 +119,27 @@
     });
   }
 
+  /** El endpoint se resuelve contra el origen actual. En web.facebook.com
+   * (o m.facebook.com) pedir www.facebook.com sería otro origen y CORS
+   * bloquearía la petición. En Node no hay `location` y se usa la constante. */
+  function graphqlUrl() {
+    try {
+      if (
+        typeof location !== "undefined" &&
+        location.hostname &&
+        /(^|\.)facebook\.com$/.test(location.hostname)
+      ) {
+        return location.origin + "/api/graphql/";
+      }
+    } catch (error) {
+      /* sin `location` utilizable: se usa la constante */
+    }
+    return GRAPHQL_URL;
+  }
+
   function postForm(body, timeoutMs) {
     return fetchWithTimeout(
-      GRAPHQL_URL,
+      graphqlUrl(),
       { method: "POST", headers: POST_HEADERS, body: body, credentials: "omit" },
       timeoutMs,
     );
@@ -1124,6 +1142,7 @@
   root.FacebookData = {
     // Constantes que caducan
     GRAPHQL_URL: GRAPHQL_URL,
+    graphqlUrl: graphqlUrl,
     DOC_ID_LISTING: DOC_ID_LISTING,
     DOC_ID_PHOTOS: DOC_ID_PHOTOS,
     DOC_ID_SEARCH: DOC_ID_SEARCH,
